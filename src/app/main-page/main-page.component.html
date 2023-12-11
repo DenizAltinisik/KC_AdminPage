@@ -1,0 +1,157 @@
+<!-- main-page.component.html -->
+
+<div class="main-page-container">
+    <h1>Welcome to the Admin Main Page</h1>
+  
+    <!-- Display the main menu buttons when currentState is 'main' -->
+    <div *ngIf="currentState === 'main'" class="button-list">
+      <button (click)="switchState('add_school')">ADD A SCHOOL</button>
+      <button (click)="switchState('rm_school')">DELETE A SCHOOL</button>
+      <button (click)="switchState('add_shuttle')">ADD A SHUTTLE</button>
+      <button (click)="switchState('rm_shuttle')">DELETE A SHUTTLE</button>
+      <button (click)="switchState('add_student_to_shuttle')">ADD A STUDENT TO SHUTTLE</button>
+      <button (click)="switchState('rm_student')">DROP A STUDENT FROM SHUTTLE</button>
+      <button (click)="switchState('add_driver_to_shuttle')">ADD A DRIVER TO SHUTTLE</button>
+      <button (click)="switchState('rm_driver')">DROP A DRIVER FROM SHUTTLE</button>
+      <button (click)="switchState('add_host_to_shuttle')">ADD A HOST TO SHUTTLE</button>
+      <button (click)="switchState('rm_host')">DROP A HOST FROM SHUTTLE</button>
+      <button (click)="switchState('list_schools')">LIST SCHOOLS</button>
+      <button (click)="switchState('list_shuttles')">LIST SHUTTLES</button>
+      <button (click)="switchState('list_students')">LIST STUDENTS</button>
+
+      <!-- Add more buttons as needed -->
+    </div>
+
+ <!-- ADD SCHOOL -->
+<div *ngIf="currentState === 'add_school'" class="add-school-form">
+    <div class="input-column">
+      <label for="addSchoolName" class="input-label">Enter School Name:</label>
+      <input type="text" id="addSchoolName" [(ngModel)]="addSchoolName">
+  
+      <label for="addSchoolAddress" class="input-label">Enter School Address:</label>
+      <input type="text" id="addSchoolAddress" [(ngModel)]="addSchoolAddress">
+    </div>
+  
+    <div class="button-list">
+      <button (click)="addSchool()" class="main-menu-button">ADD SCHOOL</button>
+      <button (click)="switchState('main')" class="main-menu-button">Back to Main Menu</button>
+    </div>
+  </div>
+  
+
+<!-- DELETE SCHOOL -->
+<div *ngIf="currentState === 'rm_school'" class="delete-school-form">
+    <div *ngFor="let school of schools; let i = index" class="school-item">
+      {{ school?.name }} - {{ school?.address }}
+      <button (click)="deleteSchool(i)" class="main-menu-button">DELETE</button>
+    </div>
+        <div class="button-list">
+            <button (click)="switchState('main')" class="main-menu-button">Back to Main Menu</button>
+        </div>
+  </div>
+  
+  
+
+
+
+
+  <!-- ADD SHUTTLE -->
+  <div *ngIf="currentState === 'add_shuttle'" class="add-shuttle-form">
+    <div class="input-column">
+      <label for="chooseSchool" class="input-label">Choose a School:</label>
+      <!-- Add dropdown or input for choosing a school -->
+
+      <label for="servicePlateNumber" class="input-label">Service Plate Number:</label>
+      <input type="text" id="servicePlateNumber" [(ngModel)]="servicePlateNumber">
+
+      <label for="serviceDriverId" class="input-label">ID of Service Driver:</label>
+      <input type="text" id="serviceDriverId" [(ngModel)]="serviceDriverId">
+
+      <label for="serviceDriverName" class="input-label">Name of Service Driver:</label>
+      <input type="text" id="serviceDriverName" [(ngModel)]="serviceDriverName">
+    </div>
+
+    <div class="button-list">
+      <button (click)="addShuttle()" class="main-menu-button">ADD SHUTTLE</button>
+      <button (click)="switchState('main')" class="main-menu-button">Back to Main Menu</button>
+    </div>
+  </div>
+
+<!-- DELETE SHUTTLE -->
+<div *ngIf="currentState === 'rm_shuttle'" class="delete-shuttle-form">
+
+        <div class="button-list">
+            <button (click)="switchState('main')" class="main-menu-button">Back to Main Menu</button>
+        </div>
+  </div>
+
+  <!-- ADD STUDENT TO SHUTTLE -->
+  <div *ngIf="currentState === 'add_student_to_shuttle'" class="add-student-to-shuttle-form">
+    <div class="button-row">
+      <button (click)="switchState('selectStudent')" class="form-button">Select Student</button>
+      <button (click)="switchState('selectShuttle')" class="form-button">Select Shuttle</button>
+    </div>
+    <div class="button-list">
+        <button (click)="addStudentToShuttle()" class="main-menu-button">ADD STUDENT TO SHUTTLE</button>
+        <button (click)="switchState('main')" class="main-menu-button">Back to Main Menu</button>
+    </div>
+  </div>
+
+
+
+<!-- DELETE SHUTTLE -->
+<div *ngIf="currentState === 'rm_student'" class="delete-student-form">
+
+    <div class="button-list">
+        <button (click)="switchState('main')" class="main-menu-button">Back to Main Menu</button>
+    </div>
+</div>
+
+
+  <!-- ADD DRIVER TO SHUTTLE -->
+  <div *ngIf="currentState === 'add_driver_to_shuttle'" class="add-driver-to-shuttle-form">
+    <div class="button-row">
+      <button (click)="switchState('selectShuttle')" class="form-button">Select Shuttle</button>
+      <button (click)="switchState('selectDriver')" class="form-button">Select Driver</button>
+    </div>
+    <div class="button-list">
+        <button (click)="addDriverToShuttle()" class="main-menu-button">ADD DRIVER TO SHUTTLE</button>
+        <button (click)="switchState('main')" class="main-menu-button">Back to Main Menu</button>
+    </div>
+  </div>
+
+<!-- REMOVE DRIVER FROM SHUTTLE -->
+<div *ngIf="currentState === 'rm_driver'" class="rm-driver-form">
+    <div class="button-row">
+        <button (click)="switchState('selectDriver')" class="form-button">Select Driver</button>
+    </div>
+    <div class="button-list">
+        <button (click)="rmDriverFromShuttle()" class="main-menu-button">DROP DRIVER</button>
+        <button (click)="switchState('main')" class="main-menu-button">Back to Main Menu</button>
+    </div>
+    </div>
+
+  <!-- ADD HOST TO SHUTTLE -->
+  <div *ngIf="currentState === 'add_host_to_shuttle'" class="add-host-to-shuttle-form">
+    <div class="button-row">
+      <button (click)="switchState('selectShuttle')" class="form-button">Select Shuttle</button>
+      <button (click)="switchState('selectHost')" class="form-button">Select Host</button>
+    </div>
+    <div class="button-list">
+        <button (click)="addHostToShuttle()" class="main-menu-button">ADD HOST TO SHUTTLE</button>
+        <button (click)="switchState('main')" class="main-menu-button">Back to Main Menu</button>
+    </div>
+  </div>
+
+<!-- REMOVE HOST FROM SHUTTLE -->
+<div *ngIf="currentState === 'rm_host'" class="rm-host-form">
+    <div class="button-row">
+        <button (click)="switchState('selectHost')" class="form-button">Select Host</button>
+    </div>
+        <div class="button-list">
+            <button (click)="rmHostFromShuttle()" class="main-menu-button">DROP HOST</button>
+            <button (click)="switchState('main')" class="main-menu-button">Back to Main Menu</button>
+        </div>
+    </div>
+</div>
+  

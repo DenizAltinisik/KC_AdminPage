@@ -1,0 +1,56 @@
+/* main-page.component.css */
+
+.main-page-container {
+    text-align: center;
+    margin-top: 20px; /* Adjust margin as needed */
+  }
+  
+  .button-list {
+    width: 20%; /* Set your desired width */
+    margin: 20px auto; /* Center the element horizontally and add top margin */
+  }
+  
+  .button-list button {
+    width: 100%; /* Make the buttons take up the full width of the container */
+    padding: 10px;
+    margin-bottom: 10px; /* Add margin between buttons */
+    background-color: #ccc; /* Initial background color (gray) */
+    color: #000; /* Initial text color (black) */
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s; /* Add transition for smooth effect */
+  }
+  
+  .button-list button:hover {
+    background-color: #000; /* Background color on hover (black) */
+    color: #fff; /* Text color on hover (white) */
+  }
+  
+  .add-school-form {
+  text-align: center;
+}
+.rm-shuttle-form,
+.rm-school-form {
+    text-align: center;
+  }
+
+.input-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+}
+.add-shuttle-form,
+.add-student-form,
+.add-driver-form,
+.add-driver-to-shuttle-form,
+.add-host-form {
+  text-align: center;
+  margin-top: 20px;
+}
